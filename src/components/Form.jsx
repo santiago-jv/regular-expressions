@@ -43,7 +43,7 @@ const Form = ({setTextValidated}) => {
                 <label htmlFor="regularExpression">Expresión regular:</label>
                 <input id="regularExpression" name="regularExpression" type="text" value={formData.regularExpression} onChange={handleInputs}/>
                 <p>{error && error}</p>	
-                <button>Aplicar validación</button>
+                <button>Aplicar</button>
             </form>
             <button onClick={cleanFields}>Limpiar campos</button>
         </div>
