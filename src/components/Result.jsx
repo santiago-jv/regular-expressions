@@ -1,12 +1,20 @@
 import React from 'react'
 
-const Result = ({textValidated}) => {
+const Result = ({coincidences}) => {
     return (
-        <div className="">
-            <h1>Coincidencias</h1>
-            {textValidated && Array.from(textValidated).map((text,index)=>(
-                <li key={index}>{text}</li>
-            ))}
+        <div className="mt-4 ">
+            {coincidences ? <>
+                <h4>Coincidencias</h4>
+                <ul className="list-group list-group bg-light">
+                {Array.from(coincidences).map((text,index)=>(
+                    <li className="list-group-item" key={index}>{text}</li>
+                ))}
+                </ul>
+                </>
+            :
+                <h4>No hay coincidencias</h4>
+            }
+            
         </div>
     )
 }
