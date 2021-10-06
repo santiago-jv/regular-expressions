@@ -39,7 +39,7 @@ const Form = ({setTextValidated}) => {
         <div className="form-container">
             <form onSubmit={validateRegExp}>
                 <label htmlFor="text">Texto:</label>
-                <input id="text" name="text" type="text" value={formData.text} onChange={handleInputs}/>
+                <input className="controls" id="text" name="text" type="text" value={formData.text} onChange={handleInputs}/>
                 <label htmlFor="regularExpression">Expresión regular:</label>
                 <input id="regularExpression" name="regularExpression" type="text" value={formData.regularExpression} onChange={handleInputs}/>
                 <p>{error && error}</p>	
