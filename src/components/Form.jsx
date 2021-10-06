@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 import { initialState } from '../constants';
 
 
-const Form = ({setTextValidated}) => {
+const Form = ({setCoincidences}) => {
     const [formData, setFormData] = useState(initialState);
     const [error, setError] = useState(null)
     
     const handleInputs = (event) => {
-        setError(null)
+        
         setFormData( {
             ...formData,
             [event.target.name]:event.target.value
@@ -18,12 +18,14 @@ const Form = ({setTextValidated}) => {
     }
     const validateRegExp = (event) => {
         event.preventDefault()
+        setError(null)  
         
-        if(!fieldsAreEmpty()){      
+        if(!fieldsAreEmpty()){ 
+               
             try {
                 const regExpression = new RegExp(formData.regularExpression,'g')
-                console.log(formData.text.match(regExpression));
-                setTextValidated(formData.text.match(regExpression))
+                
+                setCoincidences(formData.text.match(regExpression))
             }
             catch(error) {
                 setError("Expresión regular inválida. " + error.message )
@@ -33,19 +35,48 @@ const Form = ({setTextValidated}) => {
             setError("Debes llenar los campos primero.")
         }
     }
-    const cleanFields = ()=> setFormData(initialState)
+    const cleanFields = ()=> {
+        setFormData(initialState)
+    }
     
     return (
-        <div className="form-container">
-            <form onSubmit={validateRegExp}>
-                <label htmlFor="text">Texto:</label>
-                <input id="text" name="text" type="text" value={formData.text} onChange={handleInputs}/>
-                <label htmlFor="regularExpression">Expresión regular:</label>
-                <input id="regularExpression" name="regularExpression" type="text" value={formData.regularExpression} onChange={handleInputs}/>
-                <p>{error && error}</p>	
-                <button>Aplicar validación</button>
+        <div className="form-container mt-4">
+            <form onSubmit={validateRegExp} id="liveAlertPlaceholder">
+                <div class=" row">
+                    <div class="col">
+                        <label className="mb-2" htmlFor="text">Ingrese Texto:</label>
+                        <input className="form-control" id="text" name="text" type="text" value={formData.text} onChange={handleInputs}/>
+                    </div>
+                    <div class="col">
+                        <label className="mb-2" htmlFor="regularExpression">Expresión regular:</label>
+                        <input id="regularExpression" className="form-control" name="regularExpression" type="text" value={formData.regularExpression} onChange={handleInputs}/>
+                        
+                    </div>
+                </div>
+
+                    {error &&   <div className="alert w-50 my-3 alert-danger d-flex align-items-center" role="alert">
+                                    {error}
+                                </div>
+                    }
+                   
+                <div className="row container">
+                    <div className="col-md-3">
+                        <button className="btn btn-primary mt-3 mr-5 " >
+                        <i class="fas fa-check-circle "></i>
+                            Aplicar Validación</button>
+                    </div>
+                    <div className="col-md-3">
+                        <button className="btn btn-danger mt-3 " onClick={cleanFields}>
+                        <i class="fas fa-times-circle"></i> Limpiar Campos</button>
+
+                    </div>
+                </div>
+
+
+
+                
             </form>
-            <button onClick={cleanFields}>Limpiar campos</button>
+           
         </div>
     )
 }

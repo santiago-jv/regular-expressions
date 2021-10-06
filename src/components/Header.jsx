@@ -2,8 +2,8 @@ import React from 'react'
 
 const Header = () => {
     return (
-        <header>
-            <h1>Expresiones regulares</h1>
+        <header className="border-bottom py-2 text-center">
+            <h1>Expresiones Regulares</h1>
         </header>
     )
 }
