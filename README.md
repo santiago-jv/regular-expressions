@@ -10,7 +10,7 @@ Este proyecto proporciona la posibilidad de aplicar una expresión regular a un 
 
 > Las claves deben contener el siguiente tipo y orden en los caracteres que la conforman: Una letra Mayúscula seguida de 3 números, luego seguida de 3 letras minúsculas.
 
-**La siguiente expresión regular que satisface lo solicitado en el documento es: [A-Z]{1}\d{3}[a-z]{3}\W{3}**
+** La siguiente expresión regular que satisface lo solicitado en el documento es: [A-Z]{1}\d{3}[a-z]{3}\W{3} **
 
 ## Scripts Disponibles una vez clones el repositorio
 
